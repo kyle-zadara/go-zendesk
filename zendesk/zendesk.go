@@ -45,6 +45,7 @@ type Client interface {
 	ListOrganizationTickets(int64, *ListOptions, ...SideLoad) (*ListResponse, error)
 	ListExternalIDTickets(string, *ListOptions, ...SideLoad) (*ListResponse, error)
 	ListRequestedTickets(int64) ([]Ticket, error)
+	ListRequestedTicketsFull(int64, *ListOptions, ...SideLoad) (*ListResponse, error)
 	ListTickets(*ListOptions, ...SideLoad) (*ListResponse, error)
 	ListTicketAudits(int64, *ListOptions) (*ListResponse, error)
 	ListTicketComments(int64) ([]TicketComment, error)
@@ -319,10 +320,10 @@ type TicketSearchResults struct {
 
 // UserSearchResults represents returned results from the unified search api for type:user
 type UserSearchResults struct {
-	Results      []User `json:"results"`
-	NextPage     *string  `json:"next_page"`
-	PreviousPage *string  `json:"previous_page"`
-	Count        *int64   `json:"count"`
+	Results      []User  `json:"results"`
+	NextPage     *string `json:"next_page"`
+	PreviousPage *string `json:"previous_page"`
+	Count        *int64  `json:"count"`
 }
 
 // APIError represents an error response returnted by the API.
